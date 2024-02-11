@@ -23,3 +23,29 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.pagination {
+    margin-top: 20px;
+    text-align: right;
+    float: right;
+}
+
+.pagination a {
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: white;
+}

@@ -1,6 +1,33 @@
 <?php 
-   session_start();
+session_start();
+
+
+if (isset($_SESSION['valid'])) {
+    header("Location: index.php");
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include("conn.php");
+
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+    $result = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND password='$password'") or die("Query Error");
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $_SESSION['valid'] = $row['email'];
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['id'] = $row['Id'];
+        header("Location: index.php");
+        exit();
+    } else {
+        $error_message = "Wrong email or password. Please try again.";
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,35 +38,14 @@
     <title>Login</title>
 </head>
 <body>
-      <div class="container">
+    <div class="container">
         <div class="box form-box">
-            <?php 
-             
-              include("conn.php");
-              if(isset($_POST['submit'])){
-                $email = mysqli_real_escape_string($con,$_POST['email']);
-                $password = mysqli_real_escape_string($con,$_POST['password']);
-
-                $result = mysqli_query($con,"SELECT * FROM users WHERE email='$email' AND password='$password' ") or die("Select Error");
-                $row = mysqli_fetch_assoc($result);
-
-                if(is_array($row) && !empty($row)){
-                    $_SESSION['valid'] = $row['email'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['id'] = $row['Id'];
-                }else{
-                    echo "<div class='message'>
-                      <p>Wrong Username or Password</p>
-                       </div> <br>";
-                   echo "<a href='index.php'><button class='btn'>Go Back</button>";
-         
-                }
-                if(isset($_SESSION['valid'])){
-                    header("Location: index.php");
-                }
-              }else{
-            ?>
-            
+            <?php if(isset($error_message)) { ?>
+                <div class='message'>
+                    <p><?php echo $error_message; ?></p>
+                </div>
+                <br>
+            <?php } ?>
             <div class="content">
                 <h1>Student attendance</h1>
             </div>
@@ -57,15 +63,13 @@
                 </div>
 
                 <div class="field">
-                    
                     <input type="submit" class="btn" name="submit" value="Login" required>
                 </div>
                 <div class="links">
-                    Don't have account? <a href="register.php">Sign Up Now</a>
+                    Don't have an account? <a href="register.php">Sign Up Now</a>
                 </div>
             </form>
         </div>
-        <?php } ?>
-      </div>
+    </div>
 </body>
 </html>
