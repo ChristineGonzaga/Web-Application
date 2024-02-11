@@ -1,0 +1,25 @@
+.navbar ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.navbar a{
+    color: black;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+}
+.navbar li{ 
+    float: left;
+}
+.navbar {
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
