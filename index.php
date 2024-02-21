@@ -40,7 +40,7 @@ if (!isset($_SESSION['valid'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
@@ -48,7 +48,10 @@ if (!isset($_SESSION['valid'])) {
     <ul>
         <li><a href="index.php">STUDENT LIST</a></li>
         <li><a href="attendance.php">ATTENDANCE</a></li>
+        <li><a href="edit_profile.php">EDIT PROFILE</a></li>
+        <li><a href="about.php">ABOUT</a></li>
         <li><a href="logout.php">LOG OUT</a></li>
+        
     </ul>
     <form action="index.php" method="GET" class="mb-3">
         <input type="text" name="search" placeholder="Search by name">
