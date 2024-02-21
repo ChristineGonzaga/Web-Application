@@ -49,3 +49,22 @@
     background-color: #007bff;
     color: white;
 }
+.hero{
+    width: 80%;
+    margin: auto;
+    padding: 30px 0px;
+}
+article h1{
+    font-size: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #171716;
+}
+.article h1:after{
+    content: "";
+    height: 3px;
+    width: 225px;
+    background-color: #040404;
+    display: block;
+    margin: auto;
+}
