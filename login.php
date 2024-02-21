@@ -7,6 +7,7 @@ if (isset($_SESSION['valid'])) {
     exit();
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include("conn.php");
 
@@ -17,12 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = mysqli_fetch_assoc($result);
 
     if ($row) {
+        
         $_SESSION['valid'] = $row['email'];
         $_SESSION['username'] = $row['username'];
-        $_SESSION['id'] = $row['Id'];
+        $_SESSION['id'] = $row['id'];
+
         header("Location: index.php");
         exit();
     } else {
+        
         $error_message = "Wrong email or password. Please try again.";
     }
 }
